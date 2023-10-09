@@ -6,8 +6,6 @@ import {CountdownCircleTimer} from 'react-countdown-circle-timer';
 
 //------------------------------------------------------------------------
 //constants
-import CorrectAnswers from "../constants/CorrectAnswers";
-import Timer from "./Timer";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 
@@ -75,10 +73,10 @@ export default function Test() {
     });
 
     const handleNameChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
 
         // Create a copy of the errors object to avoid mutating it directly
-        const updatedErrors = { ...errors };
+        const updatedErrors = {...errors};
 
         if (value.trim() === '') {
             updatedErrors[name] = 'Name is required';
@@ -87,20 +85,20 @@ export default function Test() {
             updatedErrors[name] = 'Name should only contain letters and spaces';
             setIsNameValid(false);
         } else {
-            delete updatedErrors[name]; // Remove the error if the input is valid
+            delete updatedErrors[name];
             setIsNameValid(true);
         }
 
         // Update the errors state with the updatedErrors object
         setErrors(updatedErrors);
-        setFormData({ ...formData, [name]: value });
+        setFormData({...formData, [name]: value});
     }
 
     const handleEmailChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
 
         // Create a copy of the errors object to avoid mutating it directly
-        const updatedErrors = { ...errors };
+        const updatedErrors = {...errors};
 
         if (value.trim() === '') {
             updatedErrors[name] = 'Email is required';
@@ -109,21 +107,21 @@ export default function Test() {
             updatedErrors[name] = 'Invalid email format';
             setIsEmailValid(false);
         } else {
-            delete updatedErrors[name]; // Remove the error if the input is valid
+            delete updatedErrors[name];
             setIsEmailValid(true);
         }
 
         // Update the errors state with the updatedErrors object
         setErrors(updatedErrors);
-        setFormData({ ...formData, [name]: value });
+        setFormData({...formData, [name]: value});
     }
 
 
     const handleContactChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
 
         // Create a copy of the errors object to avoid mutating it directly
-        const updatedErrors = { ...errors };
+        const updatedErrors = {...errors};
 
         if (value.trim() === '') {
             updatedErrors[name] = 'Contact number is required';
@@ -138,7 +136,7 @@ export default function Test() {
 
         // Update the errors state with the updatedErrors object
         setErrors(updatedErrors);
-        setFormData({ ...formData, [name]: value });
+        setFormData({...formData, [name]: value});
     }
 
     const handleChange = (event) => {
@@ -361,12 +359,16 @@ export default function Test() {
                                     Looks good!
                                 </div>
                             </div>
-                            {(isNameValid && isEmailValid && isContactValid) &&
-                                <div className="text-center">
-                                <button type="button" className="btn btn-primary " onClick={startTimer}
+
+                            <div className="text-center">
+                                <button
+                                    type="button"
+                                    className="btn btn-primary"
+                                    onClick={startTimer}
+                                    disabled={!(isNameValid && isEmailValid && isContactValid)}
                                 >Start Test
                                 </button>
-                            </div> }
+                            </div>
 
                         </>)}
 
