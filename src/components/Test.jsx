@@ -9,6 +9,11 @@ import {CountdownCircleTimer} from 'react-countdown-circle-timer';
 import * as Yup from "yup";
 import {useFormik} from "formik";
 
+// Bootstrap
+import Spinner from 'react-bootstrap/Spinner';
+import {flushSync} from "react-dom";
+
+
 const validationSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -28,6 +33,7 @@ export default function Test() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [pageVisible, setPageVisible] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -146,6 +152,7 @@ export default function Test() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         setIsTestSeen(false);
         setIsTimerStarted(false);
         Object.keys(correctAnswers).forEach((question) => {
@@ -161,7 +168,7 @@ export default function Test() {
         alert('Form submitted. Time remaining: ' + timeRemaining);
         console.log('Form submitted. Time remaining: ' + timeRemaining);
         try {
-            const response = await axios.post('https://sheetdb.io/api/v1/4h45jinzc2j7w', formData, {
+            const response = await axios.post('https://sheetdb.io/api/v1/ivyccp59wbjb2', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -178,12 +185,15 @@ export default function Test() {
         } catch (error) {
             console.error('Error:', error);
         }
+        setIsLoading(false);
     };
 
 
     const isValidUser = async () => {
+
+
         try {
-            const response = await axios.get('https://sheetdb.io/api/v1/4h45jinzc2j7w', formData, {
+            const response = await axios.get('https://sheetdb.io/api/v1/ivyccp59wbjb2', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -213,6 +223,9 @@ export default function Test() {
     }
 
     const startTimer = async () => {
+
+        setIsLoading(true);
+
         const userCheck = await isValidUser();
         // const userCheck = true;
         if (userCheck) {
@@ -228,6 +241,7 @@ export default function Test() {
                 setErrors(validationErrors);
             }
         }
+        setIsLoading(false);
     };
 
 
@@ -258,9 +272,9 @@ export default function Test() {
     }, [isTimerStarted, timeRemaining]);
 
     const sendEmail = () => {
-        const emailService = 'service_t33fhl5';
-        const emailTemplate = 'template_7eak69o';
-        const publicKey = 'FOAVB-jIi70KcBSWP';
+        const emailService = 'service_ih7q3va';
+        const emailTemplate = 'template_te5sfsh';
+        const publicKey = 'j5620AwIS6ggaQvCTSwSI';
 
         const templateParams = {
             from_name: 'Non Criterion Technology',
@@ -289,33 +303,35 @@ export default function Test() {
     return (
         <div className="container mt-5">
             <img src={logo} className="img-fluid mx-auto d-block" alt="..."/>
+
+            {isTimerStarted && (<div className="timer">
+                <CountdownCircleTimer
+                    duration={timeRemaining}
+                    colors={[['#007bff', 0.33]]}
+                    onComplete={handleSubmit}
+                    size={200}
+                    strokeWidth={10}
+                    isLinearGradient={false}
+                    trailColor="#f0f0f0"
+                    trailStrokeWidth={10}
+                    strokeLinecap="butt"
+                    onTick={onTick}
+                    style={{display:'flex',flexDirection: 'row',justifyContent: 'center'}}
+                >
+                    {({remainingTime}) => (
+                        <div className="timer-txt">
+                            <a>{Math.floor(remainingTime / 60)}:{remainingTime % 60}</a>
+                        </div>
+                    )}
+                </CountdownCircleTimer>
+            </div>)}
+
             {/*<div className="timer" id='timer'></div>*/}
             {/*<Timer/>*/}
             <form>
                 <>
                     {pageVisible && !isLoggedIn && (
                         <>
-                            {isTimerStarted && (<div className="timer">
-                                <CountdownCircleTimer
-                                    duration={timeRemaining}
-                                    colors={[['#007bff', 0.33]]}
-                                    onComplete={handleSubmit}
-                                    size={200} // Adjust the size of the timer circle
-                                    strokeWidth={10} // Adjust the thickness of the timer circle
-                                    isLinearGradient={false} // Disable gradient
-                                    trailColor="#f0f0f0" // Color of the remaining trail
-                                    trailStrokeWidth={10} // Thickness of the remaining trail
-                                    strokeLinecap="butt"
-                                    onTick={onTick}// Adjust line ending style
-                                    // Update time left
-                                >
-                                    {({remainingTime}) => (
-                                        <div className="timer-txt">
-                                            <a>{Math.floor(remainingTime / 60)}:{remainingTime % 60}</a>
-                                        </div>
-                                    )}
-                                </CountdownCircleTimer>
-                            </div>)}
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label">Name:</label>
                                 <input type="text" placeholder="Enter your Name here"
@@ -366,8 +382,16 @@ export default function Test() {
                                     className="btn btn-primary"
                                     onClick={startTimer}
                                     disabled={!(isNameValid && isEmailValid && isContactValid)}
-                                >Start Test
+                                >{isLoading?'Loading...':'Start Test'}
+                                    {isLoading && <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    /> }
                                 </button>
+
                             </div>
 
                         </>)}
@@ -747,7 +771,16 @@ export default function Test() {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" onClick={handleSubmit} className="btn btn-primary">Submit</button>
+                                <button type="button" onClick={handleSubmit} className="btn btn-primary">{isLoading ? 'Loading...' : 'Submit'}
+                                    {isLoading &&
+                                        <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    /> }
+                                </button>
                             </div>
                         </>
                     )}
