@@ -48,7 +48,7 @@ export default function Test() {
 
     const correctAnswers = {
         q1: 'option2',
-        q2: 'option3',
+        q2: 'option2',
         q3: 'option3',
         q4: 'option1',
         q5: 'option1',
@@ -376,40 +376,36 @@ export default function Test() {
                         <>
                             <div className="question">
                                 <div className="mb-3">
-                                    <label htmlFor="question1" className="form-label">Question 1: What does the break
-                                        statement do
-                                        in a C loop?</label>
+                                    <label htmlFor="question1" className="form-label">Question 1: What will be the value of x after executing the following C code?</label>
+                                    <code>
+                                             <br/>
+                                    int x = 10;<br/>
+                                    int y = 5;<br/>
+                                    x = x + y++;
+                                    </code>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q1"
                                                id="q1-option1"
                                                onChange={handleChange} value="option1"/>
-                                        <label className="form-check-label" htmlFor="q1-option1">Option 1: Exits the
-                                            loop and
-                                            continues with the next iteration.</label>
+                                        <label className="form-check-label" htmlFor="q1-option1">Option 1: 16</label>
                                     </div>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q1"
                                                id="q1-option2"
                                                onChange={handleChange} value="option2"/>
-                                        <label className="form-check-label" htmlFor="q1-option2">Option 2: Exits the
-                                            loop and
-                                            terminates the loop entirely.</label>
+                                        <label className="form-check-label" htmlFor="q1-option2">Option 2: 15</label>
                                     </div>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q1"
                                                id="q1-option3"
                                                onChange={handleChange} value="option3"/>
-                                        <label className="form-check-label" htmlFor="q1-option3">Option 3: Continues to
-                                            the next
-                                            iteration of the loop.</label>
+                                        <label className="form-check-label" htmlFor="q1-option3">Option 3: 17</label>
                                     </div>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q1"
                                                id="q1-option4"
                                                onChange={handleChange} value="option4"/>
-                                        <label className="form-check-label" htmlFor="q1-option4">Option 4: Resets the
-                                            loop to its
-                                            initial state.</label>
+                                        <label className="form-check-label" htmlFor="q1-option4">Option 4: 10</label>
                                     </div>
                                 </div>
                             </div>
@@ -417,32 +413,35 @@ export default function Test() {
 
                             <div className="question">
                                 <div className="mb-3">
-                                    <label htmlFor="question2" className="form-label">Question 2: Which of the following
-                                        data types in C is used to store characters?</label>
+                                    <label htmlFor="question2" className="form-label">Question 2: What is the result of the following JavaScript code snippet? </label>
+                                    <code>
+                                             <br/>
+                                    console.log(5 + "5");
+                                    </code>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q2"
                                                id="q2-option1"
                                                onChange={handleChange} value="option1"/>
-                                        <label className="form-check-label" htmlFor="q2-option1">Option 1: int</label>
+                                        <label className="form-check-label" htmlFor="q2-option1">Option 1: 10</label>
                                     </div>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q2"
                                                id="q2-option2"
                                                onChange={handleChange} value="option2"/>
-                                        <label className="form-check-label" htmlFor="q2-option2">Option 2: float</label>
+                                        <label className="form-check-label" htmlFor="q2-option2">Option 2:  "55"</label>
                                     </div>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q2"
                                                id="q2-option3"
                                                onChange={handleChange} value="option3"/>
-                                        <label className="form-check-label" htmlFor="q2-option3">Option 3: char</label>
+                                        <label className="form-check-label" htmlFor="q2-option3">Option 3: 55</label>
                                     </div>
                                     <div className="form-check">
                                         <input type="radio" className="form-check-input" name="q2"
                                                id="q2-option4"
                                                onChange={handleChange} value="option4"/>
                                         <label className="form-check-label" htmlFor="q2-option4">Option 4:
-                                            boolean</label>
+                                        Error</label>
                                     </div>
                                 </div>
                             </div>
@@ -524,10 +523,10 @@ export default function Test() {
                                         <label htmlFor="question5" className="form-label">Question 5: What is the output
                                             of the following Java code snippet?</label>
                                         <code>
-                                            <br/>
-                                            int x = 5; <br/>
-                                            int y = 3;<br/>
-                                            System.out.println(x % y);
+                                             <br/>
+                                             int x = 5; <br/>
+                                             int y = 3;<br/>
+                                             System.out.println(x % y);
                                         </code>
                                         <div className="form-check">
                                             <input type="radio" className="form-check-input" name="q5"
@@ -599,37 +598,32 @@ export default function Test() {
 
                                 <div className="question">
                                     <div className="mb-3">
-                                        <label htmlFor="question7" className="form-label">Question 7: What does SQL
-                                            stand for?</label>
+                                        <label htmlFor="question7" className="form-label">Question 7: Which keyword is used to define a constant variable in Java?</label>
                                         <div className="form-check">
                                             <input type="radio" className="form-check-input" name="q7"
                                                    id="q7-option1"
                                                    onChange={handleChange} value="option1"/>
                                             <label className="form-check-label" htmlFor="q7-option1">Option 1:
-                                                Structured
-                                                Query Language</label>
+                                            final</label>
                                         </div>
                                         <div className="form-check">
                                             <input type="radio" className="form-check-input" name="q7"
                                                    id="q7-option2"
                                                    onChange={handleChange} value="option2"/>
-                                            <label className="form-check-label" htmlFor="q7-option2">Option 2: Simple
-                                                Query Language</label>
+                                            <label className="form-check-label" htmlFor="q7-option2">Option 2: var</label>
                                         </div>
                                         <div className="form-check">
                                             <input type="radio" className="form-check-input" name="q7"
                                                    id="q7-option3"
                                                    onChange={handleChange} value="option3"/>
-                                            <label className="form-check-label" htmlFor="q7-option3">Option 3: Standard
-                                                Query Language</label>
+                                            <label className="form-check-label" htmlFor="q7-option3">Option 3: static</label>
                                         </div>
                                         <div className="form-check">
                                             <input type="radio" className="form-check-input" name="q7"
                                                    id="q7-option4"
                                                    onChange={handleChange} value="option4"/>
                                             <label className="form-check-label" htmlFor="q7-option4">Option 4:
-                                                Sequential
-                                                Query Language</label>
+                                            finalvar</label>
                                         </div>
                                     </div>
                                 </div>
