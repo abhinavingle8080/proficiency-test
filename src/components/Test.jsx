@@ -168,7 +168,7 @@
             alert('Form submitted. Time remaining: ' + timeRemaining);
             console.log('Form submitted. Time remaining: ' + timeRemaining);
             try {
-                const response = await axios.post('https://sheetdb.io/api/v1/ivyccp59wbjb2', formData, {
+                const response = await axios.post('http://localhost:8041/api/test/submit-test', formData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -190,10 +190,8 @@
 
 
         const isValidUser = async () => {
-
-
             try {
-                const response = await axios.get('https://sheetdb.io/api/v1/ivyccp59wbjb2', formData, {
+                const response = await axios.post('http://localhost:8041/api/test/get-submissions', formData, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
